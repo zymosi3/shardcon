@@ -1,7 +1,7 @@
 package net.thumbtack.sharding.core.cluster;
 
 import com.hazelcast.config.Config;
-import com.hazelcast.config.Join;
+import com.hazelcast.config.JoinConfig;
 import com.hazelcast.config.NetworkConfig;
 import com.hazelcast.config.TcpIpConfig;
 import com.hazelcast.core.*;
@@ -45,7 +45,7 @@ public class HazelcastShardingCluster implements ShardingCluster {
         NetworkConfig networkConfig = cfg.getNetworkConfig();
         networkConfig.setPort(port);
         networkConfig.setPortAutoIncrement(true);
-        Join join = networkConfig.getJoin();
+        JoinConfig join = networkConfig.getJoin();
         join.getMulticastConfig().setEnabled(false);
         TcpIpConfig tcpIpConfig = join.getTcpIpConfig().setEnabled(true);
         for (String host : hosts) {
